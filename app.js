@@ -53,6 +53,5 @@ angular.module('taskManagerApp', ['taskManagerEnv'])
         });
     };
 
-    // Inicializar
     vm.loadTasks();
   });
