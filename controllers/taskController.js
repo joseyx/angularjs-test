@@ -6,11 +6,41 @@ angular.module('taskManagerApp')
   vm.selectedTask = null;
   vm.sortField = 'createdAt';
   vm.sortReverse = false;
+  vm.pageInfo = {};
+  vm.page = 0;
+  vm.size = 10;
 
-  vm.loadTasks = function() {
-    TaskService.getAll().then(function(response) {
-      vm.tasks = response.data;
+  vm.loadTasks = function(page, size, sort, dir, completed) {
+    page = (typeof page === 'number') ? page : vm.page;
+    size = size || vm.size;
+    sort = sort || vm.sortField;
+    dir = (typeof vm.sortReverse === 'boolean' && vm.sortReverse) ? 'desc' : 'asc';
+    completed = (typeof completed === 'boolean') ? completed : vm.showCompleted;
+  
+    TaskService.getAll(page, size, sort, dir, completed).then(function(response) {
+      vm.pageInfo = response.data;
+      vm.tasks = vm.pageInfo.content;
+      vm.page = vm.pageInfo.number;
+      vm.size = vm.pageInfo.size;
     });
+  };
+
+  vm.goToPage = function(page) {
+    vm.loadTasks(page, vm.size, vm.sortField, vm.sortReverse ? 'desc' : 'asc');
+  };
+
+  vm.changeSort = function(field) {
+    if (vm.sortField === field) {
+      vm.sortReverse = !vm.sortReverse;
+    } else {
+      vm.sortField = field;
+      vm.sortReverse = false;
+    }
+    vm.loadTasks(0, vm.size, vm.sortField, vm.sortReverse ? 'desc' : 'asc');
+  };
+
+  vm.changeFilter = function() {
+    vm.loadTasks(0, vm.size, vm.sortField, vm.sortReverse ? 'desc' : 'asc', vm.showCompleted);
   };
 
   vm.createTask = function() {

@@ -9,17 +9,20 @@
 
 <div class="mb-3 d-flex align-items-center flex-wrap gap-2">
   <label class="me-2 mb-0">Ordenar por:</label>
-  <select ng-model="ctrl.sortField" class="form-select w-auto me-2">
-    <option value="createdAt">Fecha de creación</option>
-    <option value="updatedAt">Fecha de modificación</option>
-    <option value="completed">Estado</option>
+  <select ng-model="ctrl.sortField" class="form-select w-auto me-2"
+    ng-change="ctrl.changeSort(ctrl.sortField)">
+  <option value="createdAt">Fecha de creación</option>
+  <option value="updatedAt">Fecha de modificación</option>
+  <option value="completed">Estado</option>
   </select>
-  <button class="btn btn-outline-secondary btn-sm me-3" ng-click="ctrl.sortReverse = !ctrl.sortReverse">
-    <span ng-if="!ctrl.sortReverse">&#8595;</span>
-    <span ng-if="ctrl.sortReverse">&#8593;</span>
+  <button class="btn btn-outline-secondary btn-sm me-3"
+    ng-click="ctrl.changeSort(ctrl.sortField)">
+  <span ng-if="!ctrl.sortReverse">&#8595;</span>
+  <span ng-if="ctrl.sortReverse">&#8593;</span>
   </button>
   <label class="me-2 mb-0">Filtrar:</label>
   <select ng-model="ctrl.showCompleted" class="form-select w-auto"
+    ng-change="ctrl.changeFilter()"
     ng-options="option.value as option.label for option in [
       {label:'Todas', value:undefined},
       {label:'Completadas', value:true},
@@ -35,5 +38,7 @@
   sort-reverse="ctrl.sortReverse"
   on-edit="ctrl.viewTask(task)"
   on-toggle="ctrl.toggleTask(task)"
-  on-delete="ctrl.deleteTask(task)">
+  on-delete="ctrl.deleteTask(task)"
+  page-info="ctrl.pageInfo"
+  on-page-change="ctrl.goToPage(page)">
 </task-list>

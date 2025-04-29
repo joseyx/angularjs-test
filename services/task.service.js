@@ -1,7 +1,13 @@
 angular.module('taskManagerApp')
   .service('TaskService', function($http, API_URL) {
-    this.getAll = function() {
-      return $http.get(API_URL);
+    this.getAll = function(page, size, sort, dir, completed) {
+      var params = [];
+      if (typeof page === 'number') params.push('page=' + page);
+      if (size) params.push('size=' + size);
+      if (sort) params.push('sort=' + sort + ',' + (dir || 'asc'));
+      if (completed !== undefined) params.push('completed=' + completed);
+      var url = API_URL + (params.length ? '?' + params.join('&') : '');
+      return $http.get(url);
     };
     this.create = function(task) {
       return $http.post(API_URL, task);

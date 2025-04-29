@@ -9,7 +9,9 @@ angular.module('taskManagerApp')
         sortReverse: '=',
         onEdit: '&',
         onToggle: '&',
-        onDelete: '&'
+        onDelete: '&',
+        pageInfo: '=',
+        onPageChange: '&'
       },
       template: `
         <div class="table-responsive">
@@ -25,7 +27,7 @@ angular.module('taskManagerApp')
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="task in tasks | completed:showCompleted | orderBy:sortField:sortReverse">
+              <tr ng-repeat="task in tasks | orderBy:sortField:sortReverse">
                 <td>
                   <span class="badge badge-fixed-width" ng-class="task.completed ? 'bg-success' : 'bg-secondary'">
                     {{ task.completed ? 'Completada' : 'Pendiente' }}
@@ -60,6 +62,28 @@ angular.module('taskManagerApp')
               </tr>
             </tbody>
           </table>
+          <div class="d-flex justify-content-center my-3" ng-if="pageInfo.totalPages > 1">
+            <nav>
+              <ul class="pagination mb-0">
+                <li class="page-item" ng-class="{disabled: pageInfo.first}">
+                  <button class="page-link" ng-click="onPageChange({page: 0})" ng-disabled="pageInfo.first">&laquo;</button>
+                </li>
+                <li class="page-item" ng-class="{disabled: pageInfo.first}">
+                  <button class="page-link" ng-click="onPageChange({page: pageInfo.number - 1})" ng-disabled="pageInfo.first">&lsaquo;</button>
+                </li>
+                <li class="page-item" ng-repeat="n in [].constructor(pageInfo.totalPages) track by $index"
+                    ng-class="{active: $index === pageInfo.number}">
+                  <button class="page-link" ng-click="onPageChange({page: $index})">{{$index + 1}}</button>
+                </li>
+                <li class="page-item" ng-class="{disabled: pageInfo.last}">
+                  <button class="page-link" ng-click="onPageChange({page: pageInfo.number + 1})" ng-disabled="pageInfo.last">&rsaquo;</button>
+                </li>
+                <li class="page-item" ng-class="{disabled: pageInfo.last}">
+                  <button class="page-link" ng-click="onPageChange({page: pageInfo.totalPages - 1})" ng-disabled="pageInfo.last">&raquo;</button>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
       `
     };
