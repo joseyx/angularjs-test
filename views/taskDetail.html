@@ -1,0 +1,12 @@
+<div ng-if="detailCtrl.task">
+  <h2>Detalle de Tarea</h2>
+  <p><strong>Nombre:</strong> {{detailCtrl.task.name}}</p>
+  <p><strong>Descripción:</strong> {{detailCtrl.task.description}}</p>
+  <p><strong>Estado:</strong> <span ng-class="{'text-success': detailCtrl.task.completed, 'text-secondary': !detailCtrl.task.completed}">
+    {{detailCtrl.task.completed ? 'Completada' : 'Pendiente'}}
+  </span></p>
+  <button class="btn btn-secondary" ng-click="detailCtrl.goBack()">Volver</button>
+</div>
+<div ng-if="!detailCtrl.task">
+  <p>Cargando tarea...</p>
+</div>

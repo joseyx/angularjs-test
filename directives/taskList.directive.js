@@ -23,6 +23,7 @@ angular.module('taskManagerApp')
               <span class="task-desc text-truncate">{{task.description}}</span>
             </span>
             <span class="ms-2">
+              <a class="btn btn-sm btn-outline-primary me-2" ng-href="#!/task/{{task.id}}">Ver detalle</a>
               <button ng-click="onEdit({task: task})" class="btn btn-sm btn-info me-2">Editar</button>
               <button ng-click="onToggle({task: task})" class="btn btn-sm btn-outline-success me-2 btn-fixed-width">
                 {{ task.completed ? 'Marcar como pendiente' : 'Marcar como completada' }}
