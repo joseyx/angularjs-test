@@ -2,6 +2,11 @@
 
 Este proyecto es una aplicación web de gestión de tareas desarrollada con **AngularJS 1.x** y un backend en **Java Spring Boot**. Permite crear, editar, eliminar, alternar y visualizar tareas, así como ordenarlas y filtrarlas por diferentes criterios.
 
+### 👤 Información del candidato
+- Nombre completo: Jose Alejandro Rojas Campero
+- Correo: josea.rcampero@gmail.com
+- Teléfono: +58 414 5813740
+
 ---
 
 ## Estructura del Proyecto
