@@ -1,0 +1,32 @@
+<div class="modal fade" id="editTaskModal" tabindex="-1" aria-labelledby="editTaskModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form ng-submit="ctrl.updateTask()">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editTaskModalLabel">Editar Tarea</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body" ng-if="ctrl.selectedTask">
+          <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input type="text" ng-model="ctrl.selectedTask.name" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Descripción</label>
+            <input type="text" ng-model="ctrl.selectedTask.description" class="form-control" required>
+          </div>
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" ng-model="ctrl.selectedTask.completed" id="editCompleted">
+            <label class="form-check-label" for="editCompleted">
+              Completada
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
