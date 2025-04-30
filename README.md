@@ -8,7 +8,43 @@ Este proyecto es una aplicación web de gestión de tareas desarrollada con **An
 - Teléfono: +58 414 5813740
 
 ---
+## 🚀 Proceso de Instalación
 
+1. **Clonar el Repositorio**  
+  Clona el repositorio desde GitHub ejecutando el siguiente comando en tu terminal:
+    ```bash
+    git clone https://github.com/joseyx/angularjs-test.git
+    ```
+
+2. **Navegar al Directorio del Proyecto**  
+  Accede al directorio del proyecto:
+    ```bash
+    cd angularjs-test
+    ```
+
+3. **Instalar un Servidor Local (Opcional)**  
+  Si no tienes un servidor local instalado, puedes usar uno de los siguientes métodos:
+  - **Python (versión 3.x):**
+    ```bash
+    python -m http.server
+    ```
+  - **Node.js (con http-server):**
+    ```bash
+    npx http-server
+    ```
+  - **Extensión Live Server de VS Code:**  
+    Instala la extensión [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) y haz clic derecho en `index.html` para seleccionar "Open with Live Server".
+
+4. **Ejecutar el Proyecto**  
+  Abre tu navegador y accede a la URL proporcionada por el servidor local (por ejemplo, `http://localhost:8000`).
+
+5. **Configurar el Backend**  
+  Asegúrate de que el backend Java Spring Boot esté corriendo en `http://localhost:8080/api/tasks`.
+
+6. **Probar la Aplicación**  
+  Navega por la aplicación y verifica que todas las funcionalidades estén operativas.
+
+--- 
 ## Estructura del Proyecto
 
 ```plaintext
